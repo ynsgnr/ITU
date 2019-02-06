@@ -1,0 +1,24 @@
+PI_SAYISI   EQU   3.14
+
+* Unresolved hex number hatasý! 
+* (Mikbil kesirli sayýlarý desteklemiyor.)
+
+
+START
+
+      LDA  B, PI_SAYISI
+
+
+      YÜK  C, PI_SAYISI
+
+* Komutlar hem Türkçe, hem Ýngilizce yazýlabilir.
+
+
+
+      LDA  A, $8 + $2 * $3 / $4
+
+* Precompiler aritmetik ifadedeki iþlemleri soldan saða uygular.
+* Aritmetik ifadede sadece sabitler olabilir.
+
+      INT
+

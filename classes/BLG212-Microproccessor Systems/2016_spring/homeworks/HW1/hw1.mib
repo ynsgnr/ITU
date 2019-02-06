@@ -1,0 +1,51 @@
+
+* Student Number : 150150701
+* Student Name : Yunus Güngör
+
+ARRAY RMB 2
+	ORG ARRAY 
+	DAT $43, $5A, $41, $14, $44, $78, $41, $1E, $43, $46, $42, $32, $41, $0A, $44, $82, $42, $3C, $43, $64, $44, $6E, $42, $28, $43, $50, $58, $00
+
+*Even number indexes has letter, odd number indexes has number
+START
+	LDA D,$58
+*D is used for a flag and comparing with 'X'
+
+LOOP 	LDA SK,ARRAY
+	LDA C,0
+*Boolean C register to check if there is a swap happened or not
+
+*COMP:Compare
+COMP	LDA A,<SK+$1>
+	LDA B,<SK+$3>
+	CMP A,B
+	BLO SWAP
+	JMP	NSWP
+
+SWAP	LDA C,1
+*Sign c with 1 because there is a swap
+*Swap numbers
+	STA A,<SK+$3>
+	STA B,<SK+$1>
+*Swap letters
+	LDA A,<SK+$0>
+	LDA B,<SK+$2>
+	STA A,<SK+$2>
+	STA B,<SK+$0>
+*NSWP:No swap
+
+NSWP	INC SK
+	INC SK
+	LDA B,<SK+$0>
+	CMP B,D
+*Chek if B is 'X'
+	BEQ CSWP
+	JMP COMP
+
+*CSWP:Completed Swaps-End of loop
+CSWP	CMP C,1
+	BEQ LOOP
+	LDA D,0
+
+*if D register is zero, program is completed it tasK
+	INT

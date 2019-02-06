@@ -1,0 +1,21 @@
+START    LDA   YG,$FFFF
+
+         LDA   A,$A9
+         STA   A,<$1000>
+         PSH   A
+
+         LDA   A,$75
+         STA   A,<$2000>
+         PSH   A
+
+         BSR   ADD_NUMBERS
+         STA   A, $3000
+
+         PUL A
+         PUL A
+         INT
+
+ADD_NUMBERS    LDA   A,<YG+4>
+         ADD   A,<YG+3>
+         RTS
+

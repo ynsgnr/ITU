@@ -1,0 +1,27 @@
+START    LDA   YG,$FFFF
+         LDA   SK,$1000
+         MOV   AB,SK
+         PSH   B
+         PSH   A
+         LDA   A,$44		;for testing only
+         BSR   SWAP
+         PUL   A
+         PUL   B
+END      INT
+
+SWAP     PSH   A			;store A of main
+         DEC   YG			;place for local variable (temporary)
+         MOV   SK,YG
+         LDA   CD,<SK+05>	;address for high byte
+         LDA   A,<CD>		;ACCA <- High byte
+         STA   A,<SK+1>		;temp <- High byte
+         INC   CD			;address for low byte
+         LDA   A,<CD>		;ACCA <- Low byte
+         DEC   CD
+         STA   A,<CD>		;swap
+         LDA   A,<SK+1>		;ACCA <- temp
+         INC   CD
+         STA   A,<CD>		;high byte to <$1001>
+         INC   YG			;deallocate temp
+         PUL   A			;restore A of main
+         RTS

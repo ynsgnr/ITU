@@ -1,0 +1,24 @@
+* This is only a draft example.
+
+COUNTER  RMB 1	;Interrupt events counter variable
+
+START 
+*Interrupt Service Routine address is stored in vector
+	STA $C0, <$FFF8>	
+	STA $00, <$FFF9>	
+
+*Configure the status/control register of PIA.A
+*(Generate interrupt when IRQ input of PIA becomes 0)
+	LDA A, %00001010	
+        STA A, <DURDEN.A>
+
+        CLR <COUNTER>
+        EIN	;Enable interrupt
+WAIT    BRA WAIT	;infinite loop
+
+
+* Interrupt Service Routine
+	ORG $C000
+        INC <COUNTER>
+        RTI
+

@@ -1,0 +1,17 @@
+DIZI   YER  1
+
+     ORG  DIZI
+     DAT  1,2,3,4,5
+
+
+START
+     LDA  SK, DIZI
+     CLR  A
+     ADD  A, <SK+0>
+     ADD  A, <SK+1>
+     ADD  A, <SK+2>
+     ADD  A, <SK+3>
+     ADD  A, <SK+4>
+     INT
+
+* Sonuç (Decimal=15, Hexadecimal $0F )

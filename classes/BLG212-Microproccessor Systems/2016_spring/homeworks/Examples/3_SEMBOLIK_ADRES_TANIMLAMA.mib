@@ -1,0 +1,20 @@
+URUN_NUM   EQU   $2000
+
+* Belirtilen adrese sembolik isim verildi.
+
+
+BINA_NUM   YER   1
+
+* Derleyici bellekte 1 bytelýk yer ayýrdý, adresi önemli deðil.
+* (Bilinmeyen bir adrese sembolik isim verildi.)
+* YER 2 yazýlýrsa, 2 bytelýk yer ayýrýr.
+
+
+START
+     STA  $35, URUN_NUM
+     STA  $46, BINA_NUM
+
+     LDA  A, <URUN_NUM>
+     LDA  B, <BINA_NUM>
+
+     INT

@@ -1,0 +1,22 @@
+* Samples of N-byte instructions
+
+START
+
+* 5-byte instruction
+      STA   $95, $2000
+
+
+* 4-byte instruction
+      LDA  AB, <$3000>
+
+
+* 3-byte instruction
+      LDA  A,  $58
+
+
+* 2-byte instruction
+      CLR  A
+
+
+* 1-byte instruction
+      INT

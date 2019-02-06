@@ -1,0 +1,46 @@
+
+* Student Number : 150150701
+* Student Name : Yunus Güngör
+
+START LDA YG,$FFFF
+* initilize stack pointer to use subroutines
+	
+	STA $00,YÖNLEN.A
+	STA $FF,YÖNLEN.B
+	LDA C,$80
+LOOP	LDA A,<ÝSKELE.A>
+	STA A,ÝSKELE.B
+	LDA AB,ÝSKELE.A
+	STA A,ÝSKELE.B
+	STA B,ÝSKELE.B
+	LDA AB,YÖNLEN.A
+	STA A,ÝSKELE.B
+	STA B,ÝSKELE.B
+	LDA AB,YÖNLEN.B
+	STA A,ÝSKELE.B
+	STA B,ÝSKELE.B
+	JMP LOOP
+
+	BSR WAIT
+*go to subroutine
+
+
+*reset c register to 10000000
+RES	LDA C,$80
+	JMP LOOP
+
+*flashing led
+FLED	LDA D,$00
+	STA D,ÝSKELE.B
+	BSR WAIT
+	LDA D,$FF
+	STA D,ÝSKELE.B
+	BSR WAIT
+	JMP LOOP
+	INT
+
+WAIT LDA AB,$00
+WL	ADD AB,$1
+	CMP AB,$9FFF
+	BNE WL
+	RTS

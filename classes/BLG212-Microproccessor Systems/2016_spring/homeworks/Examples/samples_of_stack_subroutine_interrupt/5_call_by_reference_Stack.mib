@@ -1,0 +1,43 @@
+START    LDA   YG,$FFFF
+         LDA   A,$A9
+         STA   A,<$1000>
+         LDA   SK,$1000
+         MOV   AB,SK	;Method 1 (with SK)
+         PSH   B
+         PSH   A	
+         LDA   A,$75
+         STA   A,<$2000>
+         LDA   A,$00	;Method 2 (without SK)
+         PSH   A
+         LDA   A,$20
+         PSH   A
+         LDA   SK,$3000
+         MOV   AB,SK
+         PSH   B
+         PSH   A	
+         BSR   SUM_AND_CLEAR
+
+         PUL   A
+         PUL   A
+         PUL   A
+         PUL   A
+         PUL   A
+         PUL   A
+END      INT
+
+SUM_AND_CLEAR   
+         PSH   A
+         PSH   B
+         MOV   SK,YG         
+         CLR   B
+         LDA   CD,<SK+09>	;Num1 address 
+         LDA   A,<CD>		;ACCA <- Num1
+         STA   B,<CD>		;Clear Num1
+         LDA   CD,<SK+07>	;Num2 address
+         ADD   A,<CD>		;ACCA <- Num1+Num2
+         STA   B,<CD>		;Clear Num2
+         LDA   CD,<SK+05>	;Sum address
+	 STA   A,<CD>		;Sum stored
+         PUL   B
+         PUL   A
+         RTS

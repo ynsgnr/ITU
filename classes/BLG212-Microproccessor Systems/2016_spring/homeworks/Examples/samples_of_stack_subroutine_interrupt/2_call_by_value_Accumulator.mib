@@ -1,0 +1,18 @@
+START    LDA   YG,$FFFF
+
+         LDA   A,$A9	;Negative -87
+*				;Its absolute is $57 (+87)
+         BSR   ABSVAL
+         STA   A,<$1000>	
+
+         LDA   A,$75	;Positive +117
+         BSR   ABSVAL
+         STA   A,<$2000>
+         INT
+
+
+* Accumulator A contains data
+ABSVAL   BIT   A, $80	;A and %10000000
+         BEQ   END
+         NEG   A
+END      RTS

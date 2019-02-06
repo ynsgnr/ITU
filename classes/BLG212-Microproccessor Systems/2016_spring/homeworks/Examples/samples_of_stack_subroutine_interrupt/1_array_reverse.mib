@@ -1,0 +1,26 @@
+	ORG $1000
+	DAT 10,20,30,40,50
+	DAT 60,70,80,90,100
+
+START    LDA   YG,$2000
+         LDA   SK,$1000
+         LDA   B, 10	; Loop counter
+
+BACK     BEQ   NEXT
+         LDA   A,<SK+0>
+         INC   SK
+         PSH   A
+         DEC   B
+         BRA   BACK
+
+NEXT     LDA   SK,$1000
+         LDA   B, 10
+
+LOOP     BEQ   END
+         PUL   A
+         STA   A,<SK+0>
+         INC   SK
+         DEC   B
+         BRA   LOOP
+
+END      INT

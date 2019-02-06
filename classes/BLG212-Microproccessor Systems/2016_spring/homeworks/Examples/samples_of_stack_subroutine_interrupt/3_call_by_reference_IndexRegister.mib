@@ -1,0 +1,23 @@
+START    LDA   YG,$FFFF
+
+         LDA   A,$A9
+         STA   A,<$1000>
+         LDA   SK,$1000
+         BSR   ABSVAL
+
+         LDA   A,$75
+         STA   A,<$2000>
+         LDA   SK,$2000
+         BSR   ABSVAL
+
+END      INT
+*----------------------------------
+* SK contains address of data
+ABSVAL   PSH   A
+         LDA   A,<SK+0>
+         BIT   A,$80	; A and %1000 0000
+         BEQ   FINISH
+         NEG   A
+         STA   A,<SK+0>
+FINISH   PUL   A
+         RTS

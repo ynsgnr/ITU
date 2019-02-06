@@ -1,0 +1,16 @@
+DIZI   YER  1
+     ORG  DIZI
+     DAT  1,2,3,4,5
+
+
+START
+     LDA  SK, DIZI
+     CLR  A
+     LDA  CD, 0
+DEVAM     ADD  A, <SK+CD+0>
+     INC  CD
+     CMP CD, 5
+     BLT  DEVAM
+     INT
+
+* Sonuç (Decimal=15, Hexadecimal $0F )
