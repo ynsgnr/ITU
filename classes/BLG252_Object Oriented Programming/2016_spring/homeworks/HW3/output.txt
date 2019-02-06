@@ -1,0 +1,55 @@
+**********************
+Number of items:2
+1. Chocolate Chip Cookies #10 Cost: 150
+2. Cake Mix Cookies #16 Cost: 280
+**********************
+Total cost: 430
+**********************
+
+Out of range
+**********************
+Number of items:1
+1. Chocolate ice cream #1.5 Cost: 255
+**********************
+Total cost: 255
+**********************
+
+invalid value
+**********************
+Number of items:2
+1. Gummi bears #12 Cost: 1068
+2. Hanukkah gelt #8 Cost: 880
+**********************
+Total cost: 1948
+**********************
+
+**********************
+Number of items:3
+1. Chocolate Chip Cookies #4 Cost: 200
+2. Cake Mix Cookies #12 Cost: 180
+3. Peanut Butter Chocolate Chip Cookies #3 Cost: 30
+**********************
+Total cost: 410
+**********************
+
+**********************
+Number of items:2
+1. Orange Jelly Candy #5 Cost: 750
+2. Gummi bears #15 Cost: 4500
+**********************
+Total cost: 5250
+**********************
+
+**********************
+Number of items:2
+1. Chocolate ice cream #2 Cost: 480
+2. Raspberry Ripple #12 Cost: 3000
+**********************
+Total cost: 3480
+**********************
+
+Total cost: 250
+Discount: 10
+Discount amount: -25
+Discounted cost: 225
+**********************
