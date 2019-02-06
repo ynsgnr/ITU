@@ -6,9 +6,9 @@
  All files and files named with snake case.
 
    - ### Root
-     Root file has class folders, files apply to whole department (such as prerequisite classes diagram), grade distrubition folder, internships folder and projects folder
+     Root file has classes folder, files apply to whole department (such as prerequisite classes diagram), grade distrubition folder, internships folder and projects folder
     
-   - ### Class folders
+   - ### Classes Folder
      Class folders named with class code then class names. In class folders you can find class files by year. Contributions to increase covered terms are welcome. 
      Class files grouped as homeworks, lecture notes (can be slides or student notes) and projects. You can related files under those folders. There is no distiction between class languages, you can use 'TR' or 'EN' at the end of file name to distinguish between languages
     
