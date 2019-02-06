@@ -3,7 +3,7 @@
 
 ## File Structure
 
- All files and files named with snake case.
+ Folder names separated with "_".
 
    - ### Root
      Root file has classes folder, files apply to whole department (such as prerequisite classes diagram), grade distrubition folder, internships folder and projects folder
