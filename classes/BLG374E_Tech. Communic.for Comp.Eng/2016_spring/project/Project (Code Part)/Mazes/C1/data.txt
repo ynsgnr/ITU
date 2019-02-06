@@ -1,0 +1,7 @@
+Statistics for "m0b.txt":
+
+DFS results:      53 microsecond(s).
+BFS results:      44 microsecond(s).
+A* results:       285 microsecond(s).
+Dijsktra results: 152 microsecond(s).
+Random results:   63 microsecond(s).

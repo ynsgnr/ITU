@@ -1,0 +1,7 @@
+Statistics for "m4b.txt":
+
+DFS results:      39 microsecond(s).
+BFS results:      37 microsecond(s).
+A* results:       324 microsecond(s).
+Dijsktra results: 242 microsecond(s).
+Random results:   141 microsecond(s).

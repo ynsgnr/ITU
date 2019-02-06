@@ -1,0 +1,79 @@
+Statistics for "m0b.txt":
+
+DFS results:      64 microsecond(s).
+BFS results:      23 microsecond(s).
+A* results:       130 microsecond(s).
+Dijsktra results: 86 microsecond(s).
+Random results:   125 microsecond(s).
+Statistics for "m1b.txt":
+
+DFS results:      12 microsecond(s).
+BFS results:      8 microsecond(s).
+A* results:       34 microsecond(s).
+Dijsktra results: 18 microsecond(s).
+Random results:   21 microsecond(s).
+Statistics for "m2b.txt":
+
+DFS results:      13 microsecond(s).
+BFS results:      15 microsecond(s).
+A* results:       58 microsecond(s).
+Dijsktra results: 49 microsecond(s).
+Random results:   28 microsecond(s).
+Statistics for "m3b.txt":
+
+DFS results:      11 microsecond(s).
+BFS results:      17 microsecond(s).
+A* results:       29 microsecond(s).
+Dijsktra results: 23 microsecond(s).
+Random results:   11 microsecond(s).
+Statistics for "m4b.txt":
+
+DFS results:      25 microsecond(s).
+BFS results:      5 microsecond(s).
+A* results:       40 microsecond(s).
+Dijsktra results: 26 microsecond(s).
+Random results:   14 microsecond(s).
+Statistics for "m5b.txt":
+
+DFS results:      6 microsecond(s).
+BFS results:      16 microsecond(s).
+A* results:       31 microsecond(s).
+Dijsktra results: 23 microsecond(s).
+Random results:   12 microsecond(s).
+Statistics for "m6b.txt":
+
+DFS results:      10 microsecond(s).
+BFS results:      18 microsecond(s).
+A* results:       123 microsecond(s).
+Dijsktra results: 104 microsecond(s).
+Random results:   82 microsecond(s).
+Statistics for "m7b.txt":
+
+DFS results:      21 microsecond(s).
+BFS results:      19 microsecond(s).
+A* results:       215 microsecond(s).
+Dijsktra results: 192 microsecond(s).
+Random results:   74 microsecond(s).
+Statistics for "m8b.txt":
+
+DFS results:      21 microsecond(s).
+BFS results:      24 microsecond(s).
+A* results:       194 microsecond(s).
+Dijsktra results: 150 microsecond(s).
+Random results:   40 microsecond(s).
+Statistics for "m9b.txt":
+
+DFS results:      9 microsecond(s).
+BFS results:      9 microsecond(s).
+A* results:       91 microsecond(s).
+Dijsktra results: 64 microsecond(s).
+Random results:   67 microsecond(s).
+
+Total of all 10:
+
+DFS total:      19.2 microseconds
+BFS total:      15.4 microseconds
+A* total:       94.5 microseconds
+Dijkstra total: 73.5 microseconds
+Random total:   47.4 microseconds
+End of file
