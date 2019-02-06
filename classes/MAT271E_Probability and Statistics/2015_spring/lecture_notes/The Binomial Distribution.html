@@ -1,0 +1,164 @@
+<HTML>
+<HEAD><TITLE>The Binomial Distribution</TITLE></HEAD>
+<BODY>
+<H1>The Binomial Distribution</H1>
+
+In many cases, it is appropriate to summarize a group of independent observations by the 
+number of observations in the group that represent one of two outcomes.  For example, the 
+proportion of individuals in a random sample who support one of two political candidates fits
+this description.  In this case, the <A HREF="sampinf.htm">statistic</A> 
+<IMG SRC="phat.gif" WIDTH = 25 ALIGN="top"> is the <I>count</I> <I>X</I> of voters who support
+the candidate divided by the total number of individuals in the group <I>n</I>.  This provides an 
+estimate of the <A HREF="sampinf.htm">parameter</A> <I>p</I>, the proportion of 
+individuals who support the candidate in the entire population.
+<P>
+The <I><B>binomial distribution</I></B> describes the behavior of a count variable <I>X</I> if
+the following conditions apply:
+<DL><DD><I><B>1:</B> The number of observations n is fixed.
+<DD><B>2:</B> Each observation is independent.
+<DD><B>3:</B> Each observation represents one of two outcomes ("success" or "failure").
+<DD><B>4:</B> The probability of "success" p is the same for each outcome. </I></DL> 
+<BR>If these conditions are met, then <I>X</I> has a binomial distribution with parameters 
+<I>n</I> and <I>p</I>, abbreviated <I>B(n,p)</I>.  
+<P>
+<U>Example</U>
+<P>
+Suppose individuals with a certain gene have a 0.70 probability of eventually contracting 
+a certain disease.  If 100 individuals with the gene participate in a lifetime study, then the 
+distribution of the random variable describing the number of individuals who will contract the
+disease is distributed <I>B(100,0.7)</I>.
+<P>
+<B><I>Note: The sampling distribution of a count variable is only well-described by the binomial
+distribution is cases where the population size is significantly larger than the sample size.  
+As a general rule, the binomial distribution should not be applied to observations from 
+a <A HREF = "sample.htm#SRS">simple random sample (SRS)</A> unless the 
+population size is at least 10 times larger than the sample size.</B></I>        
+<P>
+To find probabilities from a binomial distribution, one may either calculate them directly,
+use a binomial table, or use a computer.  The number of sixes rolled by a single die in 20
+rolls has a <I>B(20,1/6)</I> distribution.  The probability of rolling more than 2 sixes
+in 20 rolls, <I>P(X&gt;2)</I>, is equal to 1 - <I>P(X<U>&lt;</U>2) = 1 - (P(X=0) + P(X=1) + 
+P(X=2))</I>. Using the MINITAB command "cdf" with subcommand "binomial n=20 p=0.166667" gives the cumulative
+distribution function as follows: 
+<PRE>
+Binomial with n = 20 and p = 0.166667
+
+         x     P( X <= x)
+         0        0.0261
+         1        0.1304
+         2        0.3287
+         3        0.5665
+         4        0.7687
+         5        0.8982
+         6        0.9629
+         7        0.9887
+         8        0.9972
+         9        0.9994   	
+</PRE>
+The corresponding graphs for the probability density function and cumulative distribution function
+for the <I>B(20,1/6)</I> distribution are shown below:<BR><IMG SRC="binpdf.gif">
+<IMG SRC="bincdf.gif" HSPACE=40><P>
+Since the probability of 2 or fewer sixes is equal to 0.3287, the probability of rolling more than
+2 sixes = 1 - 0.3287 = 0.6713.      
+<P>
+<B>The probability that a random variable <I>X</I> with binomial distribution <I>B(n,p)</I> is
+equal to the value <I>k</I>, where <I>k = 0, 1,....,n </I>, is given by </B>
+<IMG SRC="binprob.gif" ALIGN="middle">, where <IMG SRC="bincoef.gif" ALIGN="middle">.
+<BR>The latter expression is known as the <I><B>binomial coefficient</I></B>, stated as
+"<I>n choose k</I>," or the number of possible ways to choose <I>k</I> "successes"
+from <I>n</I> observations.  For example, the number of ways to achieve
+2 heads in a set of four tosses is "4 choose 2", or 4!/2!2! = (4*3)/(2*1) = 
+6.  The possibilities are {HHTT, HTHT, HTTH, TTHH, THHT, THTH}, where "H" represents
+a head and "T" represents a tail.  The binomial coefficient multiplies the probability 
+of <I>one</I> of these possibilities (which is (1/2)&sup2;(1/2)&sup2; = 1/16 for a fair coin) 
+by the number of ways the outcome may be achieved, for a total probability of 6/16.   
+  
+<H3>Mean and Variance of the Binomial Distribution</H3>
+The binomial distribution for a random variable <I>X</I> with parameters 
+<I>n</I> and <I>p</I> represents the sum of
+<I>n</I> independent variables <I>Z</I> which may assume the values 0 or 1.  
+If the probability that each <I>Z</I> variable assumes the value 1 is equal 
+to <I>p</I>, then the <A HREF="rvmnvar.htm#rvmean">mean</A>
+of each variable is equal to <I>1*p + 0*(1-p) = p</I>, and the 
+<A HREF="rvmnvar.htm#rvvar">variance</A> is equal to <I>p(1-p).</I>  By the 
+addition properties for independent random variables, the mean and variance 
+of the binomial distribution are equal to the sum of the means and variances 
+of the <I>n</I> independent <I>Z</I> variables, so 
+<IMG SRC = "binmv.gif" ALIGN="top">
+<P>
+These definitions are intuitively logical.  Imagine, for example, 8 flips
+of a coin.  If the coin is fair, then <I>p</I> = 0.5.  One would expect the 
+mean number of heads to be half the flips, or <I>np</I> = 8*0.5 = 4.  The
+variance is equal to <I>np(1-p)</I> = 8*0.5*0.5 = 2.    
+    
+<A NAME="sampprop"></A><H3>Sample Proportions</H3>
+If we know that the count <I>X</I> of "successes" in a group of <I>n</I> observations with
+sucess probability <I>p</I> has a binomial distribution with mean <I>np</I> and variance
+<I>np(1-p)</I>, then we are able to derive information about the distribution of the <I><B>
+sample proportion</I></B><IMG SRC="phat.gif" WIDTH = 25 ALIGN="top">, the count of 
+successes <I>X</I> divided by the number of observations <I>n</I>.  By the multiplicative 
+properties of the mean, the mean of the distribution of <I>X/n</I> is equal to the mean of <I>X</I>
+divided by <I>n</I>, or <I>np/n = p</I>.  This proves that the sample proportion 
+<IMG SRC="phat.gif" WIDTH = 25 ALIGN="top"> is an <I>unbiased estimator</I> of the population 
+proportion <I>p</I>.  The variance of <I>X/n</I> is equal to the variance
+of <I>X</I> divided by <I>n&sup2;</I>, or <I>(np(1-p))/n&sup2; = (p(1-p))/n </I>.  This formula
+indicates that as the size of the sample increases, the variance decreases.   
+<P>
+In the example of rolling a six-sided die 20 times, the probability <I>p</I> of rolling
+a six on any roll is 1/6, and the count <I>X</I> of sixes has a <I>B(20, 1/6)</I> distribution. 
+The mean of this distribution is 20/6 = 3.33, and the variance is 20*1/6*5/6 = 100/36 = 2.78. 
+The mean of the <I>proportion</I> of sixes in the 20 rolls, <I>X/20</I>, is equal to 
+<I>p</I> = 1/6 = 0.167, and the variance of the proportion is equal to (1/6*5/6)/20 = 0.007.
+
+<A NAME="normapp"></A>
+<H3>Normal Approximations for Counts and Proportions</H3>
+
+<B>For large values of <I>n</I>, the distributions of the count <I>X</I> and the sample proportion 
+<IMG SRC="phat.gif" WIDTH = 25 ALIGN="top"> are approximately <A HREF="normal.htm">normal</A>.
+This result follows from the <A HREF = "sampmn.htm#clt">Central Limit Theorem</A>.
+The mean and variance for the approximately normal distribution of <I>X</I> are <I>np</I> 
+and <I>np(1-p)</I>, identical to the mean and variance of the binomial(<I>n,p</I>) distribution.
+Similarly, the mean and variance for the approximately normal distribution of the sample
+proportion are <I>p</I> and <I>(p(1-p)/n)</I>.</B>
+<P>
+<I>Note: Because the normal approximation is not accurate for small values of <I>n</I>, a good rule of 
+thumb is to use the normal approximation only if <I>np<U>&gt;</U></I>10 and 
+<I>np(1-p)<U>&gt;</U></I>10.</I>
+<P>
+For example, consider a population of voters in a given state.  The true proportion of voters who 
+favor candidate A is equal to 0.40.  Given a sample of 200 voters, what is the probability that
+more than half of the voters support candidate A?  
+<P>
+The count <I>X</I> of voters in the sample of 200 who support candidate A is distributed
+<I>B(200,0.4)</I>.  The mean of the distribution is equal to 200*0.4 = 80, and the variance is equal
+to 200*0.4*0.6 = 48.  The standard deviation is the square root of the variance, 6.93.  The 
+probability that more than half of the voters in the sample support candidate A is equal to
+the probability that <I>X</I> is greater than 100, which is equal to 1- <I>P(X<U>&lt;</U></I> 100).
+<P>
+To use the normal approximation to calculate this probability, we should first acknowledge that
+the normal distribution is <I>continuous</I> and apply the <I><B>continuity correction</B></I>.
+This means that the probability for a single discrete value, such as 100, is extended to the 
+probability of the <I>interval</I> (99.5,100.5).  Because we are interested in the probability
+that <I>X</I> is less than or equal to 100, the normal approximation applies to the upper limit
+of the interval, 100.5.  If we were interested in the probability that <I>X</I> is strictly less
+than 100, then we would apply the normal approximation to the lower end of the interval, 99.5.
+<P>
+So, applying the continuity correction and standardizing the variable <I>X</I> gives the following:
+<BR>1 - <I>P(X<U>&lt;</U></I> 100) 
+<BR>= 1 - <I>P(X<U>&lt;</U></I> 100.5) 
+<BR>= 1 - <I>P(Z<U>&lt;</U></I> (100.5 - 80)/6.93) 
+<BR>= 1 - <I>P(Z<U>&lt;</U></I> 20.5/6.93)
+<BR>= 1 - <I>P(Z<U>&lt;</U></I> 2.96) = 1 - (0.9985) = 0.0015.  Since the value 100 is nearly three
+standard deviations away from the mean 80, the probability of observing a count this high is 
+extremely small. 
+<P>
+<A HREF="stat101.htm">RETURN TO MAIN PAGE</A>.  
+
+</BODY>
+</HTML>
+
+
+
+
+
+
