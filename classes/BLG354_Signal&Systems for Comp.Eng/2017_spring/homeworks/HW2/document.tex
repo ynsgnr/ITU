@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} 
+\usepackage{amsmath} 
+\setlength{\parindent}{4em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.5}
+
+\title{BLG 354E Homework - 2}
+\author{Yunus Güngör }
+\date{April 2018}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Answers}
+	
+	This homework only includes answers to given questions
+	
+	1)$$F(t)=\int_{-\infty}^{\infty}f(t)e^{-j2\pi ft}dt$$
+	\par
+	Consider a discreate signal $X[t]$ which is multiplication of a continuous signal $f(t)$ and a pulse signal $S(t)=\sum_{-\infty}^{\infty}\delta (t-nT_s)$. $T_s=$time between samples.
+	$$F(X(t))=\int_{-\infty}^{\infty}[X(t)\sum_{-\infty}^{\infty}\delta(t-nT_s)]e^{-j2 \pi ft}dt$$
+	$$F(X(t))=\sum_{-\infty}^{\infty}\int_{-\infty}^{\infty}[X(t)\delta(t-nT_s)]e^{-j2 \pi ft}dt$$
+	$$X(t)=\sum_{n=-\infty}^{\infty}x(nT_s)e^{-j2 \pi f n T_s}$$
+	\par
+	$2 \pi f =w$ $nT_s=n$ (if function is considered as an array)
+	$$X(e^{jw})=\sum_{n=0}^{N-1}x[n]e^{-jwn}$$
+	\par
+		Sampling $w$ at $w_k=2\pi k / N$ , $k=0,1,2,...N-1$
+	$$X[k]=\sum_{n=0}^{N-1}x[n]e^{-j2\pi kn/N}$$
+	\par
+	
+	2)Code for this question can be found in attachment.
+	
+	3)Unit Impulse, is the signal that has value $1$ at $t=1$ and has value $0$ otherwise. It is defined as $\delta(n) = \begin{cases}
+	0  & \text{if } n \neq 0 \\
+	1  & \text{if } n=0
+	\end{cases} \quad$
+	\par
+	Unit impulse response is the output from a signal processing system for the input of unit impulse
+	\par
+
+	4)Linear and Time Invariant systems are both time invariant and linear. A system can be represented as $y[n]=H(x[n])$ and $y(n)=h(n)x(n)$. $y(n)$ is output, $h(n)$ is system function and $x(n)$ is the input.
+	\par
+	If a system is time invariant: $x(n-n_0)h(n)=y(n-n_0)$.
+	\par
+	If a system is linear and $$x_1(n)h(n)=y_1(n)$$ $$x_2(n)h(n)=y_2(n)$$ is given, then $$(ax_1(n)+bx_2(n)h(n)=ay_1(n)+by_2(n)$$
+	\par
+	$$x[n]=\sum_{-\infty}^{\infty}x[k]\delta[n-k]$$
+	$$y[n]=H(\sum_{-\infty}^{\infty}x[k]\delta[n-k])=\sum_{-\infty}^{\infty}H(x[k]\delta[n-k])$$
+	$$y[n]=\sum_{-\infty}^{\infty}x[k]H(\delta[n-k])=\sum_{-\infty}^{\infty}x[k]h[n-k]$$
+	
+	a)Intuition behind convoltion is linear, and time invariant properties of system. Since multipling and shifting does not change the system output or system, we can apply this infinitly many times.
+	\par
+	
+	5)\par
+	a)This system is not casual due to output depending on a value at $t+2$
+	This system is not stable since $d(x)/dt$ is not bounded if $|x(t)|<B_x$ 
+	\par 
+	b)This system is casual since output does not depend any future value at $t+n$
+	This system is stable because it can be bounded, if $x$ is also bounded.
+	\par 
+	c)This system is casual since output does not depend any future value at $t+n$
+	$$\int_{-\infty}^{\inf}e^{-(t-5)}u(t-5)=\int_{t=5}^{\infty}e^{-(t-5)}=-e^{5-t}=-e^5/e^t$$
+	$$lim_{t\rightarrow \infty}-e^5/e^t=0$$
+	$$-e^5/e^t<0$$
+	This system can be bounded therefore it is stable
+	\par 
+	d)This system is casual since output does not depend any future value at $t+n$
+	$$\int_{t=-\infty}^{\infty}u(t)-e^{-3t}u(t)=\int_{t=0}^{\infty}1-e^{-3t}=1+e^{\infty}-2=\infty$$
+	This system can not be bounded therefore it is not stable
+	\par
+	
+	6)Code for this question can be found in attachment.
+	\par 
+	Result: y[n]=[ 6 10 18 16 18 12  8  2]
+
+	\par
+	
+	7)$$y[n]=\sum_{k=0}^{1}h[k]x[n-k]$$
+	$$y[0]=2.3=6$$
+	$$y[1]=4.3+2.(-1)=10$$
+	$$y[2]=6.3+4.(-1)+2.2=18$$
+	$$y[3]=4.3+6.(-1)+4.2+2.1=16$$
+	$$y[4]=2.3+4.(-1)+6.2+4.1=18$$
+	$$y[5]=2.(-1)+4.2+6.1=12$$
+	$$y[6]=2.2+4.1=8 $$
+	$$y[7]=2.1=2 $$
+	\par
+	
+	8)convolve2d function of Scipy, performs convolution operation between 2 dimensional matrices. Applying convolution on each channel of the image (R,G,B) with smoothing box filter creates a blur effect on the image.
+	Code for this question can be found in attachment.	
+	\par
+\end{document}
