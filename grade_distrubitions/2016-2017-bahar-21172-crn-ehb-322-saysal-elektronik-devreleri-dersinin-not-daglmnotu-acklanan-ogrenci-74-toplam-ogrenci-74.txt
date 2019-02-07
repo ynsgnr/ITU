@@ -1,0 +1,10 @@
+Not,Kişi Sayısı,Yüzde
+AA,3 Kişi,% 4.05
+BA,1 Kişi,% 1.35
+BB,6 Kişi,% 8.11
+CB,18 Kişi,% 24.32
+CC,11 Kişi,% 14.86
+DC,6 Kişi,% 8.11
+DD,9 Kişi,% 12.16
+FF,11 Kişi,% 14.86
+VF,9 Kişi,% 12.16

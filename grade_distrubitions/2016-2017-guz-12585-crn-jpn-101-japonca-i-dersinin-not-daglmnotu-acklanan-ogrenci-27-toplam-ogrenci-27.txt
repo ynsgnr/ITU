@@ -1,0 +1,4 @@
+Not,Kişi Sayısı,Yüzde
+BL,14 Kişi,% 51.85
+BZ,13 Kişi,% 48.15
+VF,0 Kişi,% 0
