@@ -20,3 +20,21 @@
 
    - ### Projects Folder
       This folder has project files prepared by students. Each folder named with term, subject, student name and professor's name.
+
+## Automaticly Saving Grade Distrubitions
+ You can use ```get_grad_dist.py``` code to automaticly extract grade distrubitions and saved them under grade distrubitions folder as csv file.
+
+  - ### Requirements
+    Chrome, Python, selenium and chromedriver is required. To install python refer to  [python website](https://www.python.org/), for selenium please refer to [selenium website](https://www.seleniumhq.org/), you can also find information about chromedriver here.
+
+    - #### Automated Install and Run (Untested)
+      Windows only: You can double click on ```get_grad_dist.ps1``` to install dependencies and run automaticly, requires chrome.
+
+  - ### Configuring and Running
+    - Crate file with the same format as ```web_driver_config_example.txt```, or edit this file with your ninova username and password, and your sis password (the password you enter after logging in to sis). 
+    - Save your configuration as ```web_driver_config.txt```
+    - Open a console, go the this reposities location and run ```py get_grad_dist.py``` or ```python get_grad_dist.py```
+    - If you have any problems check configuration, and you still have any problems it might be because sis blocked you, (they love blocking people). Wait a couple minutes then run program again
+
+  - ### Sending Files to this repo
+    - After extracting grades you can use ```git push``` to add extracted grades to this repo so anyone can see them
