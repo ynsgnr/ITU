@@ -10,10 +10,10 @@
     
    - ### Classes Folder
      Class folders named with class code then class names. In class folders you can find class files by year. Contributions to increase covered terms are welcome. 
-     Class files grouped as homeworks, lecture notes (can be slides or student notes) and projects. You can related files under those folders. There is no distiction between class languages, you can use 'TR' or 'EN' at the end of file name to distinguish between languages
+     Class files grouped as homeworks, lecture notes (can be slides or student notes) and projects. You can related files under those folders.
     
    - ### Grade Distrubition Folder
-     This folder has grade distrubitions per class. Each file named with class code, class name, class teacher, class language and term in snake case. If there is an unknown variable it is referenced as 'unknown'.
+     This folder has grade distrubitions per class. Each file named with term, class code, class teacher in snake case. If there is an unknown variable it is referenced as 'unknown'.
     
    - ### Internships Folder
      This folder has internship reports prepared by students. Files named with internship term, company name, subject and student name.
