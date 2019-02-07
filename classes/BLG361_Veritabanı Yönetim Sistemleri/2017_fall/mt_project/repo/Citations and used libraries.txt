@@ -1,0 +1,13 @@
+Libraries and other sources used in this project other than flask packages:
+
+Bootstrap Framework for html, css and js support:
+https://getbootstrap.com
+
+Superhero bootstrap theme by Thomas Park:
+http://usebootstrap.com/theme/superhero
+
+UI Comments by maridlcrmn in home.html for message list UI
+(consider that codes edited by Yunus Gungor):
+https://bootsnipp.com/snippets/featured/ui-comments
+
+Flask packages can be found in requirements.txt

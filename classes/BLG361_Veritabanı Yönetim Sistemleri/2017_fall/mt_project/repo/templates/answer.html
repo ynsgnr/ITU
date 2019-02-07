@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}{{answer.title}}{% endblock %}
+{% block content %}
+      <div class="page-header">
+        <h1>Edit Answer</h1>
+      </div>
+
+      <form role="form" action="" method="post" name="add_answer"
+              class="form-horizontal">
+        <div class="form-group">
+                   {{ form.csrf_token }}
+              <div class="form-group">
+                <label for="title" class="control-label col-sm-2">Text:</label>
+                <div class="col-sm-10">
+                  {{ form.text(required=True, autofocus=True, value=answer.text) }}
+                  {% for error in form.text.errors %}
+                    <div class="alert alert-danger">
+                      {{ error }}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              {{ form.messageID(value=answer.messageId)}}
+
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Summit answer</button>
+            </div>
+        </div>
+{% endblock %}

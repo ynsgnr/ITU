@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="btn btn-info row">
+          <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1" id="logout">
+          <div class="comment-tabs">
+              <ul class="nav nav-tabs" role="tablist">
+                  {% if messages %}
+                  <li class="active"><a href="#comments-logout" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Messages</h4></a></li>
+                  {% endif %}
+                  {% if current_user.is_authenticated %}
+                  <li><a href="#add-comment" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Add a message</h4></a></li>
+                  {% endif %}
+              </ul>
+              <div class="tab-content">
+                  {% if messages %}
+                  <div class="tab-pane active" id="comments-logout">
+                      <ul class="media-list">
+                       {% for message in messages %}
+                        <li class="media">
+                          <div class="pull-left">
+                            <img class="media-object img-circle" src="{{ message[7] }}" alt="profile">
+                            <span>{{ message[3] }}</span>
+                          </div>
+                          <div class="media-body">
+                            <div class="well well-lg">
+                                <h4 class="media-heading text-uppercase reviews">{{ message[1] }}</h4>
+                                <p class="media-comment">
+                                  {{ message[2] }}
+                                </p>
+                                {% if current_user.is_authenticated %}
+                                <a class="btn btn-info btn-circle text-uppercase" data-toggle="collapse" href="#replyForm{{ message[0] }}" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                {% endif %}
+                                <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#reply{{ message[0] }}"><span class="glyphicon glyphicon-comment"></span> Answers</a>
+                                {% if current_user.is_admin %}
+                                <a class="btn btn-info btn-circle text-uppercase" href="{{ url_for('site.del_message_page', message_id=message[0]) }}" id="reply"><span class="glyphicon glyphicon-remove-sign"></span> Delete</a>
+                                <a class="btn btn-info btn-circle text-uppercase" href="{{ url_for('site.edit_message_page', message_id=message[0]) }}" id="reply"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                {% endif %}
+                            </div>
+                          </div>
+                          <div class="collapse" id="reply{{ message[0] }}">
+                              <ul class="media-list">
+                                <!--answers to the message -->
+                                {% for answer in answers[message[0]] %}
+                                  <li class="media media-replied">
+                                      <div class="pull-left">
+                                        <img class="media-object img-circle" src="{{ answer[8] }}" alt="profile">
+                                        <span>{{ answer[2] }}</span>
+                                      </div>
+                                      <div class="media-body">
+                                        <div class="well well-lg">
+                                            <p class="media-comment">
+                                              {{ answer[3] }}
+                                            </p>
+                                            <ul class="text-uppercase nav nav-pills">
+                                              {% if current_user.is_authenticated %}
+                                              <li><a class="btn btn-info btn-circle text-uppercase" href="{{ url_for('site.up_answer_page', answer_id=answer[0])}}" id="reply"><span class="glyphicon glyphicon-arrow-up"></span>Up</a></li>
+                                              {% endif %}
+                                              <li class="active"><a>Votes:<span class="badge">{{ answer[4] }}</span></a></li>
+                                              {% if current_user.is_admin %}
+                                              <a class="btn btn-info btn-circle text-uppercase" href="{{ url_for('site.del_answer_page', answer_id=answer[0]) }}" id="reply"><span class="glyphicon glyphicon-remove-sign"></span> Delete</a>
+                                              <a class="btn btn-info btn-circle text-uppercase" href="{{ url_for('site.edit_answer_page', answer_id=answer[0]) }}" id="reply"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                              {% endif %}
+                                            </ul>
+                                        </div>
+                                      </div>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                          </div>
+                          {% if current_user.is_authenticated %}
+                          <!--add answer form-->
+                          <div class="collapse" id="replyForm{{ message[0] }}">
+                            <div class="well well-lg">
+                              <form role="form" action="" method="post" name="add_message"
+                                      class="form-horizontal">
+                                       {{ answerForm.csrf_token }}
+                                  <div class="form-group">
+                                    <label for="title" class="control-label col-sm-2">Text:</label>
+                                    <div class="col-sm-10">
+                                      {{ answerForm.text(required=True, autofocus=True) }}
+                                      {% for error in form.title.errors %}
+                                        <div class="alert alert-danger">
+                                          {{ error }}
+                                        </div>
+                                      {% endfor %}
+                                    </div>
+                                  </div>
+                                  {{ answerForm.messageID(value=message[0])}}
+                                  <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                      <button type="submit" name="add"
+                                              class="btn btn-primary">Add New Answer to the Message</button>
+                                    </div>
+                                  </div>
+                              </form>
+                            </div>
+                          </div>
+                          {% endif %}
+                        </li>
+                        {% endfor %}
+                      </ul>
+                  </div>
+                  {% endif %}
+                  <!-- ADD COMMENT -->
+                  {% if current_user.is_authenticated %}
+                  <div class="tab-pane" id="add-comment">
+                      <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
+                        <form role="form" action="" method="post" name="add_message"
+                                class="form-horizontal">
+                          <div class="form-group">
+                                     {{ form.csrf_token }}
+                                <div class="form-group">
+                                  <label for="title" class="control-label col-sm-2">Title:</label>
+                                  <div class="col-sm-10">
+                                    {{ form.title(required=True, autofocus=True) }}
+                                    {% for error in form.title.errors %}
+                                      <div class="alert alert-danger">
+                                        {{ error }}
+                                      </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="text" class="control-label col-sm-2">Text:</label>
+                                  <div class="col-sm-10">
+                                    {{ form.text(required=True, autofocus=True) }}
+                                    {% for error in form.text.errors %}
+                                      <div class="alert alert-danger">
+                                        {{ error }}
+                                      </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-sm-offset-2 col-sm-10">
+                                  <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Summit message</button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+  	  </div>
+    </div>
+  {% endif %}
+{% endblock %}

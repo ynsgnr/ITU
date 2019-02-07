@@ -1,0 +1,6 @@
+Flask
+psycopg2
+passlib
+flask_login
+Flask-WTF
+wtforms_components

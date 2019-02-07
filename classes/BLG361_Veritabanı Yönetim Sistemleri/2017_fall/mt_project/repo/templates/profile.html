@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="btn btn-info row">
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <div class="media">
+    <div class="pull-left">
+      <h2>Hi {{ current_user.username }}!</h2>
+    </div>
+    <div class="media-body pull-right">
+      <a class="btn btn-warning btn-circle text-uppercase"
+      href="{{ url_for('site.logout') }}">
+      <span class="glyphicon glyphicon-log-out"></span>Log Out</a>
+    </div>
+  </div>
+
+  <h2>Change Password:</h2>
+
+  <form role="form" action="" method="post" name="passwordChange"
+          class="form-horizontal">
+      {{ form.csrf_token }}
+      <div class="media">
+        <div class="pull-left">
+          <div class="form-group">
+            <label for="text" class="control-label col-sm-2">New Password:</label>
+            <div class="col-sm-10">
+              {{ form.password(required=True) }}
+              {% if 'password' in form.errors %}
+                <div class="alert alert-danger">
+                    {{ form.errors['password'] }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="media-body">
+          <button type="submit" name="log in"
+                  class="btn btn-primary">Change Password</button>
+        </div>
+      </div>
+    </form>
+
+  <h2>Change Picture:</h2>
+
+  <form role="form" action="" method="post" name="pictureChange"
+          class="form-horizontal">
+      {{ picForm.csrf_token }}
+      <div class="media">
+        <div class="pull-left">
+          <div class="form-group">
+            <label for="text" class="control-label col-sm-2">Picture link:</label>
+            <div class="col-sm-10">
+              {{ picForm.picture(required=True, value=current_user.picture) }}
+              {% if 'picture' in form.errors %}
+                <div class="alert alert-danger">
+                    {{ form.errors['picture'] }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="media-body">
+          <button type="submit" name="log in"
+                  class="btn btn-primary">Change Picture</button>
+        </div>
+      </div>
+    </form>
+
+
+  <h2>Best Friend:</h2>
+  <div class="media well well-lg">
+    <div class="pull-left">
+      <h4>{{ bestfriend }}</h4>
+    </div>
+  </div>
+
+  <h2>Friends:</h2>
+  {% if friends %}
+    {% for friend in friends %}
+    <div class="media well well-lg">
+      <div class="pull-left">
+        <h4>{{ friend[0] }}</h4>
+      </div>
+      <div class="media-body pull-right">
+        <a class="btn btn-warning btn-circle text-uppercase" href="{{ url_for('site.remove_friend_page', username=friend[0]) }}"><span class="glyphicon glyphicon-user"></span> Remove friend</a>
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <h4>No Friend</h4>
+  {% endif %}
+
+  <h2>Users:</h2>
+  {% for user in users %}
+  <div class="media well well-lg">
+    <div class="pull-left">
+      <h4>{{ user[0] }}</h4>
+    </div>
+    <div class="media-body pull-right">
+      <a class="btn btn-info btn-circle text-uppercase" href="{{ url_for('site.add_friend_page',username=user[0]) }}" ><span class="glyphicon glyphicon-user"></span> Add as a friend</a>
+      <a class="btn btn-warning btn-circle text-uppercase" href="{{ url_for('site.add_bestFriend_page', username=user[0]) }}"><span class="glyphicon glyphicon-asterisk"></span> Add as bestfriend</a>
+      {% if current_user.is_admin %}
+      <a class="btn btn-info btn-circle text-uppercase" href="{{ url_for('site.del_user_page', username=user[0]) }}" ><span class="glyphicon glyphicon-remove-sign"></span> Remove User</a>
+      <a class="btn btn-warning btn-circle text-uppercase" href="{{ url_for('site.adminize_page', username=user[0]) }}"><span class="glyphicon glyphicon-cog"></span> Make Admin</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+
+{% endblock %}

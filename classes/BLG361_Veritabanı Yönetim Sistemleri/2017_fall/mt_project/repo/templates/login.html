@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+  <h1>Log In</h1>
+
+  <form role="form" action="" method="post" name="login"
+          class="form-horizontal">
+      {{ form.csrf_token }}
+      <div class="form-group">
+        <label for="title" class="control-label col-sm-2">Username:</label>
+        <div class="col-sm-10">
+          {% if 'noUser' in form.errors %}
+          {{ form.username(required=True, autofocus=True, readonly=true) }}
+          {% else %}
+          {{ form.username(required=True, autofocus=True) }}
+          {% endif %}
+          {% if 'username' in form.errors %}
+            <div class="alert alert-danger">
+                {{ form.errors['username'] }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="text" class="control-label col-sm-2">Password:</label>
+        <div class="col-sm-10">
+          {{ form.password(required=True) }}
+          {% if 'password' in form.errors %}
+            <div class="alert alert-danger">
+                {{ form.errors['password'] }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          {% if 'noUser' in form.errors %}
+          {{ form.addUser(value="true")}}
+          <button type="submit" name="sign up"
+                  class="btn btn-primary">Sign Up</button>
+          <div class="alert alert-danger">
+            {{ form.errors['noUser'] }}
+          </div>
+          {% else %}
+          {{ form.addUser(value="false")}}
+          <button type="submit" name="log in"
+                  class="btn btn-primary">Log in / Sign Up</button>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">You can sign up with logging in if you dont have an account</h3>
+        </div>
+        <div class="panel-body">
+          To create a new account in the system just login with desired username and password, system will crate a new user if an account does not exists
+        </div>
+      </div>
+
+    </form>
+{% endblock %}
