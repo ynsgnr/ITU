@@ -1,0 +1,13 @@
+
+
+Publish a message:
+rostopic pub /incoming geometry_msgs/Transform '{translation: {x: 1, y: 1, z: 1}, rotation: {x: 1, y: 1, z: 1}}'
+
+start everything:
+source ~/catkin_ws/devel/setup.bash
+roslaunch hector_quadrotor_demo indoor_slam_gazebo.launch
+rosservice call /enable_motors true
+
+start packages:
+rosrun trajectory_referee_456 referee.py route1 dor
+rosrun hector_follower follow.py

@@ -1,0 +1,13 @@
+reference list
+=============
+- hector_gazebo
+- hector_localization
+- hector_models
+- hector_quadrotor
+- hector_slam
+- Folder stated above are taken from:
+https://github.com/tu-darmstadt-ros-pkg/hector_quadrotor
+https://github.com/tu-darmstadt-ros-pkg/hector_localization
+https://github.com/tu-darmstadt-ros-pkg/hector_gazebo
+https://github.com/tu-darmstadt-ros-pkg/hector_models
+https://github.com/tu-darmstadt-ros-pkg/hector_slam

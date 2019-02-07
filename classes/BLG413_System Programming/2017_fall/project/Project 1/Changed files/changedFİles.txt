@@ -1,0 +1,165 @@
+diff --git a/Makefile b/Makefile
+old mode 100644
+new mode 100755
+index 915c8b7..ae819f1
+--- a/Makefile
++++ b/Makefile
+
+@@ -537,7 +537,7 @@ init-y              := init/
+ drivers-y      := drivers/ sound/ firmware/ ubuntu/
+ net-y          := net/
+ libs-y         := lib/
+-core-y         := usr/
++core-y         := usr/ set_myFlag/
+ endif # KBUILD_EXTMOD
+ 
+diff --git a/arch/x86/boot/compressed/head_32.S b/arch/x86/boot/compressed/head_
+old mode 100644
+new mode 100755
+index 470244d..c4d8fc2
+--- a/arch/x86/boot/compressed/head_32.S
++++ b/arch/x86/boot/compressed/head_32.S
+@@ -227,12 +227,14 @@ relocated:
+        xorl    %ebx, %ebx
+        jmp     *%ebp
+ 
++#ifdef CONFIG_EFI_STUB
+        .data
+ efi32_config:
+        .fill 11,8,0
+        .long efi_call_phys
+        .long 0
+        .byte 0
++#endif 
+ 
+ /*
+  * Stack and heap for uncompression
+diff --git a/arch/x86/syscalls/syscall_32.tbl b/arch/x86/syscalls/syscall_32.tbl
+old mode 100644
+new mode 100755
+index 094c319..5c39627
+--- a/arch/x86/syscalls/syscall_32.tbl
++++ b/arch/x86/syscalls/syscall_32.tbl
+@@ -361,3 +361,4 @@
+ 352    i386    sched_getattr           sys_ni_syscall
+ 353    i386    renameat2               sys_ni_syscall
+ 354    i386    seccomp                 sys_seccomp
++355    i386    set_myFlag      set_myFlag
+diff --git a/include/linux/init_task.h b/include/linux/init_task.h
+old mode 100644
+new mode 100755
+index 668aae0..89f70a6
+--- a/include/linux/init_task.h
++++ b/include/linux/init_task.h
+@@ -215,6 +215,7 @@ extern struct task_group root_task_group;
+        },                                                              \
+        .thread_group   = LIST_HEAD_INIT(tsk.thread_group),             \
+        .thread_node    = LIST_HEAD_INIT(init_signals.thread_head),     \
++       .myFlag=0,      \
+        INIT_IDS                                                        \
+        INIT_PERF_EVENTS(tsk)                                           \
+        INIT_TRACE_IRQFLAGS                                             \
+diff --git a/include/linux/sched.h b/include/linux/sched.h
+old mode 100644
+new mode 100755
+index ff679bf..8d7f1d7
+--- a/include/linux/sched.h
++++ b/include/linux/sched.h
+@@ -1465,6 +1465,7 @@ struct task_struct {
+        unsigned int    sequential_io;
+        unsigned int    sequential_io_avg;
+ #endif
++       int myFlag;
+ };
+ 
+ /* Future-safe accessor for struct task_struct's cpus_allowed. */
+diff --git a/include/linux/syscalls.h b/include/linux/syscalls.h
+old mode 100644
+new mode 100755
+index 1686815..7b07e74
+--- a/include/linux/syscalls.h
++++ b/include/linux/syscalls.h
+@@ -849,4 +849,5 @@ asmlinkage long sys_kcmp(pid_t pid1, pid_t pid2, int type,
+ asmlinkage long sys_finit_module(int fd, const char __user *uargs, int flags);
+ asmlinkage long sys_seccomp(unsigned int op, unsigned int flags,
+                            const char __user *uargs);
++asmlinkage long set_myFlag(pid_t pid, int flag);
+ #endif
+diff --git a/kernel/exit.c b/kernel/exit.c
+old mode 100644
+new mode 100755
+index 81b3d67..4e745c4
+--- a/kernel/exit.c
++++ b/kernel/exit.c
+@@ -3,7 +3,7 @@
+  *
+  *  Copyright (C) 1991, 1992  Linus Torvalds
+  */
+-
++#define _POSIX_SOURCE
+ #include <linux/mm.h>
+ #include <linux/slab.h>
+ #include <linux/interrupt.h>
+@@ -54,6 +54,8 @@
+ #include <linux/writeback.h>
+ #include <linux/shm.h>
+ 
++#include <linux/sched.h>
++
+ #include <asm/uaccess.h>
+ #include <asm/unistd.h>
+ #include <asm/pgtable.h>
+@@ -706,6 +708,28 @@ void do_exit(long code)
+        struct task_struct *tsk = current;
+        int group_dead;
+ 
++       struct task_struct *task;
++       struct list_head *list;
++       int pids;
++       int priory;
++       int tsk_flag=tsk->myFlag;
++       priory=sys_getpriority(PRIO_PROCESS, tsk->pid);
++
++       if(tsk_flag == 1 && priory>10)
++       {
++                       printk("Parents with pid pid:%d proi is %d.\n",tsk->pid,
++                       printk("Parent with pid:%d has been terminated Killing o
++                       //get all childs pid and call them to exit
++                       list_for_each(list, &current->children)
++                       {
++                               task = list_entry(list, struct task_struct, sibl
++                               pids = task->pid;
++                               printk("Child with pid:%d has been terminated \n
++                               sys_kill(task->pid, SIGKILL);
++                               // task points to a children
++                       }
++       }
++
+        profile_task_exit(tsk);
+ 
+        WARN_ON(blk_needs_flush_plug(tsk));
+diff --git a/kernel/fork.c b/kernel/fork.c
+old mode 100644
+new mode 100755
+index 34cba87..9e5dee8
+--- a/kernel/fork.c
++++ b/kernel/fork.c
+@@ -350,6 +350,8 @@ static struct task_struct *dup_task_struct(struct task_struc
+ 
+        account_kernel_stack(ti, 1);
+ 
++       tsk->myFlag = 0 ;
++
+        return tsk;
+ 
+ free_ti:
+@@ -1725,7 +1727,7 @@ SYSCALL_DEFINE0(fork)
+ #ifdef __ARCH_WANT_SYS_VFORK
+ SYSCALL_DEFINE0(vfork)
+ {
+-       return do_fork(CLONE_VFORK | CLONE_VM | SIGCHLD, 0, 
++       return do_fork(CLONE_VFORK | CLONE_VM | SIGCHLD, 0,
+                        0, NULL, NULL);
+ }
+ #endif
+(END)

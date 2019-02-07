@@ -1,0 +1,21 @@
+Blair	F	11
+Casey	F	35
+Dane	F	14
+Glen	F	29
+Jude	F	26
+Kelly	F	24
+Leah	F	23
+Naomi	F	21
+Ryan	F	17
+Taylor	F	14
+
+Alex	M	13F
+Evan	M	18
+Fran	M	30
+Hayden	M	28
+Izzy	M	27
+Morgan	M	22
+Ogden	M	20
+Parker	M	19
+Quinn	M	18
+Shane	M	16

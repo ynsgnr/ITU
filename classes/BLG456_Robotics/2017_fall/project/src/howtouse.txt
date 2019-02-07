@@ -1,0 +1,11 @@
+//to launch ros and rviz with default garage setting with SLAM enabled
+roslaunch hector_quadrotor_demo indoor_slam_gazebo.launch 
+
+//to enable engines
+rosservice call /enable_motors true
+
+//to enable follower that follows waypoints
+rosrun hector_follower follow.py
+
+//if catkin_make does not works delete all folder exept hector_follower and trajectory_referee_456
+//than run run.sh
