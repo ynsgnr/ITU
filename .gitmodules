@@ -1,6 +1,3 @@
-[submodule "classes/BLG361_Veritabanı"]
-	path = classes/BLG361_Veritabanı
-	url = https://github.com/itucsdb1745/itucsdb1745
 [submodule "classes\\BLG456_Robotics\\2018_fall\\project/repo"]
 	path = classes\\BLG456_Robotics\\2018_fall\\project/repo
 	url = https://github.com/ynsgnr/akupara
