@@ -12,7 +12,7 @@ password_id = "ContentPlaceHolder1_tbPassword"
 dismiss_announcement_id = "Button1"
 sis_password_name = "PIN"
 
-initial_csv_path="grade_distrubitions/"
+initial_csv_path="grade_distributions/"
 
 link_class_name = "submenulinktext2"
 #first page:
