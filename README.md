@@ -1,5 +1,9 @@
 # ITU CS Archive
   ITU Computer Science Student's archive for classes, homeworks, lecture notes and more...
+  
+  All ITU CS Students would be more than happy,
+  If you can send your lecture notes and more with a pull request or by mail to yunusgnr@gmail.com
+  Suiting with file structure and file name structure would help everyone even more <3
 
 ## File Structure
 
