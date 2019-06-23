@@ -4,6 +4,27 @@
   All ITU CS Students would be more than happy,
   If you can send your lecture notes and more with a pull request or by mail to yunusgnr@gmail.com
   Suiting with file structure and file name structure would help everyone even more <3
+  
+## Other GIT Repos for ITU CS:
+     
+    ### Everything (Midterms, homework and classes):
+     - https://github.com/uguruysal0/itucourses
+     - https://github.com/yilmazmuhammed/ITU-CE-Courses
+     - https://github.com/KadirEmreOto/ITU-CE
+     
+    ### Just Homeworks and Labs:
+     - https://github.com/erdoganhuse/ITU-BSc-Projects
+     - https://github.com/koseemre/ITU-Coding-and-Projects
+     - https://github.com/onatsahin/ITU_Assignments
+     - https://github.com/ozanozyegen/ITU-Computer-Engineering-Assignments
+     - https://github.com/bbyalcinkaya/ITU-Computer-Engineering
+     - https://github.com/burakbugrul/ITU-Computer-Engineering
+     - https://github.com/emreozdil/ITU-Computer-Engineering
+     - https://github.com/EfekanPekel/ITU-CE
+     - https://github.com/canaltinigne/ITU-Computer-Engineering
+     - https://github.com/malemar/ITU-BSc-Computer-Engineering-Homeworks
+     - https://github.com/uguruysal0/itucourses
+     
 
 ## File Structure
 
