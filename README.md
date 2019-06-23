@@ -7,23 +7,23 @@
   
 ## Other GIT Repos for ITU CS:
      
-    ### Everything (Midterms, homework and classes):
-     - https://github.com/uguruysal0/itucourses
-     - https://github.com/yilmazmuhammed/ITU-CE-Courses
-     - https://github.com/KadirEmreOto/ITU-CE
-     
-    ### Just Homeworks and Labs:
-     - https://github.com/erdoganhuse/ITU-BSc-Projects
-     - https://github.com/koseemre/ITU-Coding-and-Projects
-     - https://github.com/onatsahin/ITU_Assignments
-     - https://github.com/ozanozyegen/ITU-Computer-Engineering-Assignments
-     - https://github.com/bbyalcinkaya/ITU-Computer-Engineering
-     - https://github.com/burakbugrul/ITU-Computer-Engineering
-     - https://github.com/emreozdil/ITU-Computer-Engineering
-     - https://github.com/EfekanPekel/ITU-CE
-     - https://github.com/canaltinigne/ITU-Computer-Engineering
-     - https://github.com/malemar/ITU-BSc-Computer-Engineering-Homeworks
-     - https://github.com/uguruysal0/itucourses
+  ### Everything (Midterms, homework and classes):
+   - https://github.com/uguruysal0/itucourses
+   - https://github.com/yilmazmuhammed/ITU-CE-Courses
+   - https://github.com/KadirEmreOto/ITU-CE
+
+  ### Just Homeworks and Labs:
+   - https://github.com/erdoganhuse/ITU-BSc-Projects
+   - https://github.com/koseemre/ITU-Coding-and-Projects
+   - https://github.com/onatsahin/ITU_Assignments
+   - https://github.com/ozanozyegen/ITU-Computer-Engineering-Assignments
+   - https://github.com/bbyalcinkaya/ITU-Computer-Engineering
+   - https://github.com/burakbugrul/ITU-Computer-Engineering
+   - https://github.com/emreozdil/ITU-Computer-Engineering
+   - https://github.com/EfekanPekel/ITU-CE
+   - https://github.com/canaltinigne/ITU-Computer-Engineering
+   - https://github.com/malemar/ITU-BSc-Computer-Engineering-Homeworks
+   - https://github.com/uguruysal0/itucourses
      
 
 ## File Structure
